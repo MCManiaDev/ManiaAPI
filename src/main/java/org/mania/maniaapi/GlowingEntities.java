@@ -1,4 +1,4 @@
-package fr.skytasul.glowingentities;
+package org.mania.maniaapi;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
