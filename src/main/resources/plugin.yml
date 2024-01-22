@@ -1,0 +1,4 @@
+name: ManiaAPI
+version: '${project.version}'
+main: org.mania.maniaapi.ManiaAPI
+api-version: '1.20'
