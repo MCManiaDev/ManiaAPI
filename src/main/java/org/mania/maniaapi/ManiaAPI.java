@@ -1,24 +1,79 @@
 package org.mania.maniaapi;
 
+import me.superneon4ik.noxesiumutils.events.NoxesiumPlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mania.maniaapi.glow.GlowingEntities;
 import org.mania.maniaapi.glow.GlowingBlocks;
+import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.entity.Player;
+import me.superneon4ik.noxesiumutils.NoxesiumUtils;
 
-public final class ManiaAPI extends JavaPlugin {
+public final class ManiaAPI extends JavaPlugin implements Listener {
 
     private static ManiaAPI instance;
 
     private GlowingEntities entityGlow;
-    private GlowingBlocks blockGlow
+    private GlowingBlocks blockGlow;
     @Override
     public void onEnable() {
         // Plugin startup logic
         instance = this;
         blockGlow = new GlowingBlocks(instance);
         entityGlow = new GlowingEntities(instance);
+        Bukkit.getPluginManager().registerEvents(this, this);
         getLogger().info("Mania API has been enabled");
 
     }
+
+    public Player getPlayerFromUUID(String uuid) {
+        for (Player player: Bukkit.getServer().getOnlinePlayers()) {
+            if (player.getUniqueId().toString().equals(uuid)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    @EventHandler
+    public void on(NoxesiumPlayerJoinEvent event) {
+        String bomb = "be06aa88-2640-4da0-b8c7-05f53a613a4a";
+        Player thebomb = getPlayerFromUUID(bomb);
+        Integer protocolVersion = event.getProtocolVersion();
+        if (protocolVersion != 3) {
+            event.getPlayer().sendMessage(Component.text("Your Noxesium is outdated! Please update the mod for an optimal experience"));
+            for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+                if (player.isOp()) {
+                    player.sendMessage(event.getPlayer() + "is running an outdated version of Noxesium! (Protocol version: " + protocolVersion + " )");
+                }
+            }
+        } else if (protocolVersion == null) {
+            if (thebomb != null) {
+                thebomb.sendMessage(event.getPlayer() + "does not have Noxesium installed!");
+            }
+        }
+    }
+
+//    public void onPlayerJoin(PlayerJoinEvent event) {
+//        String bomb = "be06aa88-2640-4da0-b8c7-05f53a613a4a";
+//        Player thebomb = getPlayerFromUUID(bomb);
+//        Integer protocolVersion = NoxesiumUtils.getManager().getProtocolVersion(event.getPlayer());
+//        if (protocolVersion != 3) {
+//            event.getPlayer().sendMessage(Component.text("Your Noxesium is outdated! Please update the mod for an optimal experience"));
+//            for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+//                if (player.isOp()) {
+//                    player.sendMessage(event.getPlayer() + "is running an outdated version of Noxesium! (Protocol version: " + protocolVersion + " )");
+//                }
+//            }
+//        } else if (protocolVersion == null) {
+//            if (thebomb != null) {
+//                thebomb.sendMessage(event.getPlayer() + "does not have Noxesium installed!");
+//            }
+//        }
+//    }
 
     public static ManiaAPI getInstance() {
         return instance;

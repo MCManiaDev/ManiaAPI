@@ -58,6 +58,21 @@
           <id>sonatype</id>
           <url>https://oss.sonatype.org/content/groups/public/</url>
       </repository>
+      <repository>
+          <id>neon-repository-releases</id>
+          <name>Neon Repository</name>
+          <url>https://repo.superneon4ik.me/releases</url>
+      </repository>
+      <repository>
+          <id>noxcrew-maven</id>
+          <name>Noxcrew Public Maven Repository</name>
+          <url>https://maven.noxcrew.com/public</url>
+      </repository>
+      <repository>
+          <id>modrinth</id>
+          <name>Modrinth Maven Repository</name>
+          <url>https://api.modrinth.com/maven</url>
+      </repository>
   </repositories>
 
   <dependencies>
@@ -73,6 +88,19 @@
           <artifactId>netty-all</artifactId>
           <version>4.1.68.Final</version>
           <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>me.superneon4ik</groupId>
+          <artifactId>NoxesiumUtils</artifactId>
+          <version>1.6.0</version>
+          <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>com.noxcrew.noxesium</groupId>
+          <artifactId>api</artifactId>
+          <version>1.0.2</version>
       </dependency>
 
       <dependency>
