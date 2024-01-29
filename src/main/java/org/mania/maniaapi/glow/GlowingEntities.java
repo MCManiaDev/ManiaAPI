@@ -1,4 +1,4 @@
-package org.mania.maniaapi;
+package org.mania.maniaapi.glow;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

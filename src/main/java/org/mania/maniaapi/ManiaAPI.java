@@ -1,17 +1,21 @@
 package org.mania.maniaapi;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mania.maniaapi.glow.GlowingEntities;
+import org.mania.maniaapi.glow.GlowingBlocks;
 
 public final class ManiaAPI extends JavaPlugin {
 
     private static ManiaAPI instance;
 
-    private GlowingEntities glowing;
+    private GlowingEntities entityGlow;
+    private GlowingBlocks blockGlow
     @Override
     public void onEnable() {
         // Plugin startup logic
         instance = this;
-        glowing = new GlowingEntities(instance);
+        blockGlow = new GlowingBlocks(instance);
+        entityGlow = new GlowingEntities(instance);
         getLogger().info("Mania API has been enabled");
 
     }
@@ -21,13 +25,16 @@ public final class ManiaAPI extends JavaPlugin {
     }
 
     public GlowingEntities getGlowAPI() {
-        return glowing;
+        return entityGlow;
     }
+
+    public GlowingBlocks getBlockGlowAPI() { return blockGlow; }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        glowing.disable();
+        blockGlow.disable();
+        entityGlow.disable();
         getLogger().info("Mania API has been enabled");
     }
 }
