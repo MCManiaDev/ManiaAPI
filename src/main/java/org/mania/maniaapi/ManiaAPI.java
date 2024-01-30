@@ -3,26 +3,22 @@ package org.mania.maniaapi;
 import me.superneon4ik.noxesiumutils.events.NoxesiumPlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mania.maniaapi.glow.GlowingEntities;
-import org.mania.maniaapi.glow.GlowingBlocks;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.entity.Player;
-import me.superneon4ik.noxesiumutils.NoxesiumUtils;
 
 public final class ManiaAPI extends JavaPlugin implements Listener {
 
     private static ManiaAPI instance;
 
     private GlowingEntities entityGlow;
-    private GlowingBlocks blockGlow;
+
     @Override
     public void onEnable() {
         // Plugin startup logic
         instance = this;
-        blockGlow = new GlowingBlocks(instance);
         entityGlow = new GlowingEntities(instance);
         Bukkit.getPluginManager().registerEvents(this, this);
         getLogger().info("Mania API has been enabled");
@@ -83,12 +79,9 @@ public final class ManiaAPI extends JavaPlugin implements Listener {
         return entityGlow;
     }
 
-    public GlowingBlocks getBlockGlowAPI() { return blockGlow; }
-
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        blockGlow.disable();
         entityGlow.disable();
         getLogger().info("Mania API has been enabled");
     }
