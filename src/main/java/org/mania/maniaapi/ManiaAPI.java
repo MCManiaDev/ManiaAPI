@@ -43,12 +43,12 @@ public final class ManiaAPI extends JavaPlugin implements Listener {
             event.getPlayer().sendMessage(Component.text("Your Noxesium is outdated! Please update the mod for an optimal experience"));
             for (Player player : Bukkit.getServer().getOnlinePlayers()) {
                 if (player.isOp()) {
-                    player.sendMessage(event.getPlayer() + "is running an outdated version of Noxesium! (Protocol version: " + protocolVersion + " )");
+                    player.sendMessage(event.getPlayer().displayName() + "is running an outdated version of Noxesium! (Protocol version: " + protocolVersion + " )");
                 }
             }
         } else if (protocolVersion == null) {
             if (thebomb != null) {
-                thebomb.sendMessage(event.getPlayer() + "does not have Noxesium installed!");
+                thebomb.sendMessage(event.getPlayer().displayName() + "does not have Noxesium installed!");
             }
         }
     }
