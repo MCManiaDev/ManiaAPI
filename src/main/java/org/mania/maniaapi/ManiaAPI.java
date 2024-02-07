@@ -21,7 +21,7 @@ public final class ManiaAPI extends JavaPlugin implements Listener {
         instance = this;
         entityGlow = new GlowingEntities(instance);
         Bukkit.getPluginManager().registerEvents(this, this);
-        getLogger().info("Mania API has been enabled");
+        getLogger().info("Mania API has been enabled (version 1.12)");
 
     }
 
@@ -41,6 +41,7 @@ public final class ManiaAPI extends JavaPlugin implements Listener {
         Integer protocolVersion = event.getProtocolVersion();
         if (protocolVersion != 3) {
             event.getPlayer().sendMessage(Component.text("Your Noxesium is outdated! Please update the mod for an optimal experience"));
+            getLogger().warning(event.getPlayer().getName() + "'s Noxesium is outdated!");
             for (Player player : Bukkit.getServer().getOnlinePlayers()) {
                 if (player.isOp()) {
                     player.sendMessage(event.getPlayer().displayName() + "is running an outdated version of Noxesium! (Protocol version: " + protocolVersion + " )");
@@ -52,24 +53,6 @@ public final class ManiaAPI extends JavaPlugin implements Listener {
             }
         }
     }
-
-//    public void onPlayerJoin(PlayerJoinEvent event) {
-//        String bomb = "be06aa88-2640-4da0-b8c7-05f53a613a4a";
-//        Player thebomb = getPlayerFromUUID(bomb);
-//        Integer protocolVersion = NoxesiumUtils.getManager().getProtocolVersion(event.getPlayer());
-//        if (protocolVersion != 3) {
-//            event.getPlayer().sendMessage(Component.text("Your Noxesium is outdated! Please update the mod for an optimal experience"));
-//            for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-//                if (player.isOp()) {
-//                    player.sendMessage(event.getPlayer() + "is running an outdated version of Noxesium! (Protocol version: " + protocolVersion + " )");
-//                }
-//            }
-//        } else if (protocolVersion == null) {
-//            if (thebomb != null) {
-//                thebomb.sendMessage(event.getPlayer() + "does not have Noxesium installed!");
-//            }
-//        }
-//    }
 
     public static ManiaAPI getInstance() {
         return instance;
@@ -83,6 +66,6 @@ public final class ManiaAPI extends JavaPlugin implements Listener {
     public void onDisable() {
         // Plugin shutdown logic
         entityGlow.disable();
-        getLogger().info("Mania API has been enabled");
+        getLogger().info("Mania API has been disabled");
     }
 }

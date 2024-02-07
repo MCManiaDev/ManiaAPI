@@ -1,4 +1,4 @@
 name: ManiaAPI
-version: '1.11'
+version: '1.12'
 main: org.mania.maniaapi.ManiaAPI
 api-version: '1.20'
