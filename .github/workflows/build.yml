@@ -1,0 +1,46 @@
+name: Build
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Run maven build
+        run: mvn clean package
+      - name: Upload ManiaAPI
+        uses: actions/upload-artifact@v3
+        with:
+          name: ManiaAPI
+          path: plugin/target/*.jar
+      - name: Upload ManiaAPI
+        uses: actions/upload-artifact@v3
+        with:
+          name: ManiaAPIexample
+          path: example/target/*.jar
+  release:
+    runs-on: ubuntu-22.04
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: [build]
+    steps:
+      - name: Download artifact (ManiaAPI)
+        uses: actions/download-artifact@v3
+        with:
+          name: XGlow
+          path: plugin
+      - name: Download artifact (ManiaAPI)
+        uses: actions/download-artifact@v3
+        with:
+          name: ManiaAPI
+          path: example
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: |
+            plugin/*.jar
+            example/*.jar
+          draft: true
