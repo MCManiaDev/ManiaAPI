@@ -16,12 +16,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ManiaAPI
-          path: plugin/target/*.jar
-      - name: Upload ManiaAPI
-        uses: actions/upload-artifact@v3
-        with:
-          name: ManiaAPIexample
-          path: example/target/*.jar
+          path: src/main/resources/*.jar
   release:
     runs-on: ubuntu-22.04
     if: startsWith(github.ref, 'refs/tags/')
