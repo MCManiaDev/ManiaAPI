@@ -6,7 +6,7 @@
 
   <groupId>org.mania</groupId>
   <artifactId>ManiaAPI</artifactId>
-  <version>1.12</version>
+  <version>1.2</version>
   <packaging>jar</packaging>
 
   <name>ManiaAPI</name>
