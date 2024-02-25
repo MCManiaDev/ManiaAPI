@@ -21,7 +21,7 @@ public final class ManiaAPI extends JavaPlugin implements Listener {
         instance = this;
         entityGlow = new GlowingEntities(instance);
         Bukkit.getPluginManager().registerEvents(this, this);
-        getLogger().info("Mania API has been enabled (version 1.12)");
+        getLogger().info("Mania API has been enabled (version 1.2)");
 
     }
 
